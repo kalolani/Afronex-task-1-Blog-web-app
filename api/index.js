@@ -58,5 +58,9 @@ app.get("/profile", (req, res) => {
   });
 });
 
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json(ok);
+});
+
 app.listen(4000);
 //7f1Vw6DTNsn89cbG
