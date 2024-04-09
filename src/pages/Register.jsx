@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Header from "../components/Header";
 
@@ -6,11 +7,29 @@ export default function Register() {
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
 
+  async function register(e) {
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.status === 200) {
+      alert("registered successfully");
+    } else {
+      alert("registration failed");
+    }
+  }
+
   return (
     <main className="h-screen">
       <Header />
 
-      <form className="h-2/4 rounded w-2/6 bg-slate-100 shadow-md shadow-slate-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center">
+      <form
+        onSubmit={register}
+        className="h-2/4 rounded w-2/6 bg-slate-100 shadow-md shadow-slate-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center"
+      >
         <h3 className="text-xl text-slate-800 border-b-2 border-slate-800 border-2-4 pb-4 px-16">
           Register
         </h3>
@@ -39,7 +58,7 @@ export default function Register() {
 
         <div className="text-center">
           <button className="w-3/4 py-2 px-20 rounded border-green-700 bg-green-400 shadow-md shadow-green-400 text-slate-600">
-            Login
+            Register
           </button>
         </div>
       </form>

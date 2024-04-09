@@ -1,16 +1,39 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
+  const [redirect, setRedirect] = useState(false);
+
+  async function login(e) {
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      setRedirect(true);
+    }
+  }
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <main className="h-screen">
       <Header />
 
-      <form className="h-2/4 rounded w-2/6 bg-slate-100 shadow-md shadow-slate-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center">
+      <form
+        onSubmit={login}
+        className="h-2/4 rounded w-2/6 bg-slate-100 shadow-md shadow-slate-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center"
+      >
         <h3 className="text-xl text-slate-800 border-b-2 border-slate-800 border-2-4 pb-4 px-16">
           Login
         </h3>
