@@ -43,7 +43,10 @@ app.post("/login", async (req, res) => {
     jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
 
-      res.cookie("token", token).json("ok");
+      res.cookie("token", token).json({
+        id: userDoc._id,
+        email,
+      });
     });
   } else {
     res.status(400).json("wrong credintials");
@@ -60,6 +63,18 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json(ok);
+});
+
+app.post("/post", async (req, res) => {
+  const { title, content, author, expertise } = req.body;
+
+  const PostDocs = await Post.create({
+    title,
+    content,
+    author,
+    expertise,
+  });
+  res.json(PostDocs);
 });
 
 app.listen(4000);

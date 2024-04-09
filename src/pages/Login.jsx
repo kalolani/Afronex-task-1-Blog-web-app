@@ -2,11 +2,14 @@ import { useState } from "react";
 import Header from "../components/Header";
 import { Navigate } from "react-router-dom";
 
+import { usePosts } from "../contexts/postContext";
+
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
   const [redirect, setRedirect] = useState(false);
+  const { setEmailInfo } = usePosts();
 
   async function login(e) {
     e.preventDefault();
@@ -18,7 +21,10 @@ export default function Login() {
     });
 
     if (response.ok) {
-      setRedirect(true);
+      response.json().then((userInfo) => {
+        setEmailInfo(userInfo);
+        setRedirect(true);
+      });
     }
   }
 

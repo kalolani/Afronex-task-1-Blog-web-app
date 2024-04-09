@@ -20,6 +20,8 @@ function PostProvider({ children }) {
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [emailInfo, setEmailInfo] = useState({});
+
   useEffect(function () {
     async function fetchPosts() {
       try {
@@ -52,7 +54,7 @@ function PostProvider({ children }) {
     try {
       setIsLoading(true);
       // Add the new object to the beginning of the array
-      const res = await fetch(`${BASE_URL}/posts`, {
+      const res = await fetch(`http://localhost:4000/post`, {
         method: "POST",
         body: JSON.stringify(post),
         headers: {
@@ -81,6 +83,8 @@ function PostProvider({ children }) {
         onAddPost: handleAddPost,
         searchQuery,
         setSearchQuery,
+        emailInfo,
+        setEmailInfo,
       }}
     >
       {children}

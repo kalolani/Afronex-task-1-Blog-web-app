@@ -4,18 +4,17 @@ import SearchPosts from "./SearchPosts";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { usePosts } from "../contexts/postContext";
 
 function Header() {
-  //const { onClearPosts } = usePosts();
-
-  const [email, setEmail] = useState("");
+  const { emailInfo, setEmailInfo } = usePosts();
 
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
-        setEmail(userInfo);
+        setEmailInfo(userInfo);
       });
     });
   }, []);
@@ -30,7 +29,10 @@ function Header() {
       credentials: "include",
       method: "POST",
     });
+    setEmailInfo(null);
   }
+
+  const email = emailInfo?.emal;
   return (
     <header className="pt-4 sticky top-0 bg-slate-50 border-b-2 border-b-blue-100">
       <Link to="/">
