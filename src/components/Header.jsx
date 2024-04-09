@@ -19,6 +19,18 @@ function Header() {
       });
     });
   }, []);
+
+  function createPosts(e) {
+    e.preventDefault();
+  }
+
+  function logout(e) {
+    e.preventDefault();
+    fetch("http://localhost:4000/logout", {
+      credentials: "include",
+      method: "POST",
+    });
+  }
   return (
     <header className="pt-4 sticky top-0 bg-slate-50 border-b-2 border-b-blue-100">
       <Link to="/">
@@ -29,14 +41,18 @@ function Header() {
         {email && (
           <>
             <SearchPosts />
-            <Link
-              className="bg-green-500 border-green-500 text-white rounded-sm hover:bg-green-400 inline-block px-3 py-2 "
-              to="/form"
-            >
-              <p>CREATE POSTS</p>
+            <Link to="/form">
+              <button
+                onSubmit={createPosts}
+                className="bg-green-500 border-green-500 text-white rounded-sm hover:bg-green-400 inline-block px-3 py-2 "
+              >
+                CREATE POSTS
+              </button>
             </Link>
-            <Link className="bg-green-500 border-green-500 text-white rounded-sm hover:bg-green-400 inline-block px-3 py-2 ">
-              <p>LOG OUT</p>
+            <Link>
+              <button className="bg-green-500 border-green-500 text-white rounded-sm hover:bg-green-400 inline-block px-3 py-2 ">
+                LOG OUT
+              </button>
             </Link>
           </>
         )}
