@@ -14,7 +14,13 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+const allowedOrigin = 'https://blog-website-frontend-opal.vercel.app';
+app.use(cors({
+  origin: allowedOrigin,
+  methods:["POST","GET","PUT" ],
+  credentials:true
+  
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -216,4 +222,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(4000);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
