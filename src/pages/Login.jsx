@@ -6,10 +6,11 @@ import { usePosts } from "../contexts/postContext";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const { setEmailInfo } = usePosts();
+  const [loginError, setLoginError] = useState(false);
 
   async function login(e) {
     e.preventDefault();
@@ -25,6 +26,8 @@ export default function Login() {
         setEmailInfo(userInfo);
         setRedirect(true);
       });
+    } else {
+      setLoginError(true);
     }
   }
 
@@ -38,9 +41,9 @@ export default function Login() {
 
       <form
         onSubmit={login}
-        className="h-2/4 rounded w-2/6 bg-slate-100 shadow-md shadow-slate-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center"
+        className="h-2/4 rounded w-2/6 bg-gray-900 shadow-sm shadow-gray-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 text-center text-center phone:top-3/4 p-0 m w-full mr-2 ml-2 p-tab:w-3/4 m-auto tablet:top-1/2 w-8/12 laptop:w-5/12"
       >
-        <h3 className="text-xl text-slate-800 border-b-2 border-slate-800 border-2-4 pb-4 px-16">
+        <h3 className="text-xl text-white border-b-2 border-white border-2-4 pb-4 px-16">
           Login
         </h3>
 
@@ -51,7 +54,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             placeholder="Email"
-            className="inline-block bg-slate-50 bg-slate-300-700 focus:outline-none rounded border-slate-700 w-3/4"
+            className="placeholder:text-back focus:text-black inline-block bg-slate-50 bg-slate-300-700 focus:outline-none rounded border-slate-700 w-3/4 phone:mt-0 p-tab:w-3/5 laptop:w-3/4 desktop:h-10/12"
           />
         </div>
 
@@ -62,15 +65,17 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Password"
-            className="inline-block bg-slate-50 bg-slate-300-700 focus:outline-none rounded border-slate-700 w-3/4"
+            className="placeholder:text-back focus:text-black inline-block bg-slate-50 bg-slate-300-700 focus:outline-none rounded border-slate-700 w-3/4 p-tab:w-3/5 laptop:w-3/4"
           />
         </div>
 
-        <div className="text-center">
-          <button className="w-3/4 py-2 px-20 rounded border-green-700 bg-green-400 shadow-md shadow-green-400 text-slate-600">
+        <div className="text-center mb-16">
+          <button className="w-3/4 py-2 px-20 rounded border-green-500 bg-green-600 shadow-sm shadow-green-400 text-white p-tab:w-3/5 laptop:w-3/4">
             Login
           </button>
         </div>
+
+        {loginError && <p className="text-red-800 text-l">wrong credenials!</p>}
       </form>
     </main>
   );

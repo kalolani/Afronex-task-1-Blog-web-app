@@ -2,7 +2,7 @@ import Posts from "./Posts";
 
 function Main() {
   return (
-    <main>
+    <main className="px-4 w-auto">
       <Posts />
     </main>
   );

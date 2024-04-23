@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function DarkModeButten() {
-  const [isFakeDark, setIsFakeDark] = useState(false);
-  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
-  useEffect(
-    function () {
-      document.documentElement.classList.toggle("fake-dark-mode");
-    },
-    [isFakeDark]
-  );
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
   return (
     <button
-      onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-      className="fixed top-9 right-2 bg-green-500 border-green-500"
+      onClick={toggleDarkMode}
+      className="fixed top-4 right-2 bg-green-500 border-green-500  rounded-sm hover:bg-green-400 inline-block px-5 py-2 "
     >
-      {isFakeDark ? "☀️" : "🌙"}
+      {isDarkMode ? "☀️" : "🌙"}
     </button>
   );
 }

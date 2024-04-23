@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .border-gradient {
+    border-width: 2px;
+    border-style: solid;
+    background: linear-gradient(to right, #48bb78, #2f855a);
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -17,34 +24,18 @@ body {
   background: #fff;
 }
 
-.fake-dark-mode {
-  filter: invert(100%);
-  transition: all 0.5s;
-}
-
-.btn-fake-dark-mode {
-  position: fixed;
-  top: 2.4rem;
-  right: 2rem;
-  padding: 16px;
-  line-height: 1;
-  font-size: 15px;
-  background-color: #ffe8cc;
-  border: none;
-}
-
-section {
+/* section {
   max-width: 1140px;
   margin: 0 auto;
-}
+} */
 
-header {
+/* header {
   margin-bottom: 32px;
   font-weight: bold;
 
   justify-content: space-between;
   display: flex;
-}
+} */
 
 h1 {
   font-size: 26px;
@@ -97,32 +88,36 @@ aside {
   opacity: 75%;
 }
 
-input,
-textarea,
-button {
+/* input,
+textarea {
   font-size: 16px;
   padding: 8px 12px;
   border: 1px solid #ffe8cc;
   font-family: inherit;
   color: inherit;
-}
+} */
 
 input {
   width: 12rem;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ffe8cc;
 }
 
 textarea {
   flex: 1;
   height: 50px;
+  font-size: 16px;
+  border: 1px solid #ffe8cc;
 }
 
-button {
+/* button {
   border: 1px solid #ffa94d;
   background-color: #ffa94d;
   font-weight: 700;
   padding: 9px 24px;
   cursor: pointer;
-}
+} */
 
 h3 {
   text-transform: capitalize;
@@ -130,21 +125,21 @@ h3 {
   color: #333;
 }
 
-main ul {
+/* main ul {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 32px;
-}
+} */
 
-main li {
+/* main li {
   border: 1px solid #ffe8cc;
   padding: 16px 20px;
-}
+} */
 
-main li:hover {
+/* main li:hover {
   background-color: #fff4e6;
-}
+} */
 
 aside ul {
   font-size: 90%;

@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
@@ -13,37 +13,31 @@ function createRandomPost() {
   };
 }
 
-const BASE_URL = "http://localhost:9000";
 function PostProvider({ children }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const [searchQuery, setSearchQuery] = useState("");
-
   const [emailInfo, setEmailInfo] = useState({});
+  const [comment, setComment] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const [postInfo, setPostInfo] = useState("");
+  const [comments, setComments] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(function () {
-    async function fetchPosts() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/posts`);
-        const data = await res.json();
-
-        setPosts(data);
-      } catch {
-        throw new Error("cant't load the posts");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchPosts();
-  }, []);
+  // console.log(posts);
+  useEffect(() => {
+    fetch(`http://localhost:4000/post`).then((response) => {
+      response.json().then((posts) => {
+        setPosts(posts);
+      });
+    });
+  }, [posts]);
 
   // Derived state. These are the posts that will actually be displayed
   const searchedPosts =
     searchQuery.length > 0
       ? posts.filter((post) =>
-          `${post.title} ${post.body}`
+          `${post.author.email}`
             .toLowerCase()
             .includes(searchQuery.toLowerCase())
         )
@@ -57,13 +51,15 @@ function PostProvider({ children }) {
       const res = await fetch(`http://localhost:4000/post`, {
         method: "POST",
         body: JSON.stringify(post),
+
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
-      const data = await res.json();
-
-      setPosts((posts) => [data, ...posts]);
+      if (res.ok) {
+        setRedirect(true);
+      }
     } catch {
       throw new Error("we can't load posts");
     } finally {
@@ -71,20 +67,82 @@ function PostProvider({ children }) {
     }
   }
 
-  function handleClearPosts() {
-    setPosts([]);
+  async function handleUpdatePost(post) {
+    try {
+      setIsLoading(true);
+      // Add the new object to the beginning of the array
+      const res = await fetch(`http://localhost:4000/post`, {
+        method: "PUT",
+        body: JSON.stringify(post),
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      // const data = await res.json();
+    } catch {
+      throw new Error("we can't load posts");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleDeletePost(postId) {
+    try {
+      setIsLoading(true);
+
+      const res = await fetch(`http://localhost:4000/post/${postId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete post");
+      }
+
+      // Optional: If you expect a response from the server, you can parse it here
+      // const data = await res.json();
+
+      // Return data if needed
+      // return data;
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      throw new Error("Failed to delete post");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
     <PostContext.Provider
       value={{
         posts: searchedPosts,
-        onClearPosts: handleClearPosts,
+
         onAddPost: handleAddPost,
+        onUpdate: handleUpdatePost,
+        onDelete: handleDeletePost,
+
         searchQuery,
         setSearchQuery,
         emailInfo,
         setEmailInfo,
+        redirect,
+        setRedirect,
+
+        setIsLoading,
+        isLoading,
+        comment,
+        setComment,
+        postInfo,
+        setPostInfo,
+        comments,
+        setComments,
+        isOpen,
+        setIsOpen,
       }}
     >
       {children}

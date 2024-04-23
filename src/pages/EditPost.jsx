@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { usePosts } from "../contexts/postContext";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { useParams } from "react-router-dom";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { usePosts } from "../contexts/postContext";
 
 const modules = {
   toolbar: [
@@ -30,21 +32,29 @@ const modules = {
   ],
 };
 
-function FormAddPost() {
-  const { onAddPost } = usePosts();
+function EditPost() {
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState(null);
   const [expertise, setExpertise] = useState("");
-
   const navigate = useNavigate();
+  const { onUpdate } = usePosts();
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+      response.json().then((postInfo) => {
+        setTitle(postInfo.title);
+        setContent(postInfo.content);
+        setExpertise(postInfo.expertise);
+      });
+    });
+  }, [id]);
+
+  function handleUpdate(e) {
     e.preventDefault();
-    if (!content || !title) return;
-    onAddPost({ title, content, expertise });
-    setTitle("");
-    setContent("");
-    navigate(`/`);
+
+    onUpdate({ title, content, expertise, id });
+    navigate(`/post/${id}`);
   }
 
   return (
@@ -52,24 +62,24 @@ function FormAddPost() {
       <Header />
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleUpdate}
         className="max-w-4xl m-auto phone:w-3/4 p-0"
       >
-        <h3 className=" text-center text-gray-500 font-semibold tracking-wider">
+        <h3 className="text-center text-gray-500 font-semibold tracking-wider">
           START WRITING YOUR BLOG !
         </h3>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Post title"
-          className="text-black w-full inline-block mb-4 border-lime-500 focus:outline-lime-500"
+          className="w-full inline-block mb-4 border-lime-500 focus:outline-lime-500"
         />
 
         <input
           value={expertise}
           onChange={(e) => setExpertise(e.target.value)}
           placeholder="expertise"
-          className="text-black w-full inline-block mb-4 border-lime-500 focus:outline-lime-500"
+          className="w-full inline-block mb-4 border-lime-500 focus:outline-lime-500"
         />
 
         <ReactQuill
@@ -79,7 +89,7 @@ function FormAddPost() {
           modules={modules}
         />
         <button className="mt-10 bg-green-500 border-green-500 text-white rounded-sm hover:bg-green-400 inline-block px-5 py-2 ">
-          Add post
+          EDIT POST
         </button>
       </form>
 
@@ -88,4 +98,4 @@ function FormAddPost() {
   );
 }
 
-export default FormAddPost;
+export default EditPost;
