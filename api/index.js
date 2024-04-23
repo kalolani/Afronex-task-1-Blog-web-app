@@ -14,7 +14,13 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "PUT", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
