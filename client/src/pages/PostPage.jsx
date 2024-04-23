@@ -42,7 +42,7 @@ function PostPage() {
         setComments(comments);
       });
     });
-  }, [comments]);
+  }, [comments, postInfo._id, setComments]);
   console.log(comments);
 
   // useEffect(() => {
