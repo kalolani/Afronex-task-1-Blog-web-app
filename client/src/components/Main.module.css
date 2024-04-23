@@ -1,0 +1,16 @@
+.paragraph {
+  border: 1px solid #ffa94d;
+  background-color: #ffa94d;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: 12rem;
+  font-size: 1.1rem;
+  list-style: none;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
