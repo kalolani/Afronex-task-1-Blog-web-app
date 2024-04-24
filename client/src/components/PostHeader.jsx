@@ -8,7 +8,7 @@ function PostHeader() {
   const { emailInfo, setEmailInfo, isOpen, setIsOpen } = usePosts();
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://blog-website-api-murex.vercel.app/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
