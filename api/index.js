@@ -17,7 +17,7 @@ const app = express();
 const allowedOrigin = 'https://blog-website-frontend-opal.vercel.app';
 app.use(cors({
   origin: allowedOrigin,
-  methods:["POST","GET","PUT" ],
+ 
   credentials:true
   
 }));
