@@ -17,16 +17,6 @@ function PostHeader() {
     });
   }, []);
 
-  function logout(e) {
-    fetch("http://localhost:4000/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    setEmailInfo(null);
-
-    navigate(`/`);
-  }
-
   const email = emailInfo?.email;
   return (
     <header
