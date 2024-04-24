@@ -14,14 +14,15 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-const allowedOrigin = "http://localhost:5173";
+const allowedOrigin = " http://localhost:5173";
 app.use(
   cors({
     origin: allowedOrigin,
-
+    methods: ["POST", "GET", "PUT"],
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -92,7 +93,12 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
-    if (err) throw err;
+    if (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ error: "Token expired" });
+      }
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     res.json(info);
   });
 });

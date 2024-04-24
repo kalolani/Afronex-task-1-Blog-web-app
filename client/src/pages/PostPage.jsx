@@ -1,14 +1,12 @@
-/* eslint-disable no-unused-vars */
-import { useParams, Link, useNavigate, Outlet } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { usePosts } from "../contexts/postContext";
-import styles from "./PostPage.module.css";
-import Header from "../components/Header";
+
 import Footer from "../components/Footer";
 import MyComponent from "../components/content";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PostHeader from "../components/PostHeader";
-import { formatDuration } from "date-fns";
+
 import moment from "moment";
 
 function PostPage() {
@@ -18,7 +16,7 @@ function PostPage() {
     comment,
     setComment,
     emailInfo,
-    setEmailInfo,
+
     onDelete,
     comments,
     setComments,
@@ -34,16 +32,29 @@ function PostPage() {
         setPostInfo(postInfo);
       });
     });
-  }, [id, postInfo]);
+  }, [postInfo]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/comment/${postInfo._id}`).then((response) => {
-      response.json().then((comments) => {
+    const fetchComments = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/comment/${postInfo._id}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch comments");
+        }
+        const comments = await response.json();
         setComments(comments);
-      });
-    });
-  }, [comments, postInfo._id, setComments]);
-  console.log(comments);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        // Handle error, e.g., set default comments or show error message
+      }
+    };
+
+    fetchComments();
+  }, [comments, postInfo._id]);
+
+  // console.log(comments);
 
   // useEffect(() => {
   //   fetch("http://localhost:4000/profile", {
