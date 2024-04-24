@@ -34,6 +34,11 @@ await mongoose.connect(
   "mongodb+srv://kaleab:kalolani7@cluster0.bi7hd3m.mongodb.net/?retryWrites=true&w=majority"
 );
 
+
+app.get("/",(req,res)=>{
+  res.json("hello");
+})
+
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
   try {
