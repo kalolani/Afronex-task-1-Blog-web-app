@@ -14,7 +14,7 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-const allowedOrigin = " http://localhost:5173";
+const allowedOrigin = " https://blog-website-frontend-opal.vercel.app";
 app.use(
   cors({
     origin: allowedOrigin,
