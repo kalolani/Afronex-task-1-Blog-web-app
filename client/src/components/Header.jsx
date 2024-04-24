@@ -19,7 +19,7 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://blog-website-api-murex.vercel.app/profile", {
       credentials: "include",
     })
       .then((response) => {
@@ -40,7 +40,7 @@ function Header() {
   console.log(emailInfo);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch("https://blog-website-api-murex.vercel.app/logout", {
       method: "POST",
       credentials: "include",
     });
