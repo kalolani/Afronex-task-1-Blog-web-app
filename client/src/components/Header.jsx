@@ -19,7 +19,7 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://blog-website-api-murex.vercel.app/profile", {
+    fetch("http://localhost:4000/profile", {
       credentials: "include",
     })
       .then((response) => {
@@ -35,7 +35,7 @@ function Header() {
         console.error("Error fetching profile:", error);
         // Handle error, e.g., set default values or show error message
       });
-  }, []);
+  }, [emailInfo]);
 
   console.log(emailInfo);
 
