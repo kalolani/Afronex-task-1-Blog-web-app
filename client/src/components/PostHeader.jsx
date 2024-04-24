@@ -8,7 +8,7 @@ function PostHeader() {
   const { emailInfo, setEmailInfo, isOpen, setIsOpen } = usePosts();
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://blog-website-api-murex.vercel.app/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -17,6 +17,19 @@ function PostHeader() {
     });
   }, []);
 
+<<<<<<< HEAD
+=======
+  function logout(e) {
+    fetch("https://blog-website-api-murex.vercel.app/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    setEmailInfo(null);
+
+    navigate(`/`);
+  }
+
+>>>>>>> c864a140587a00407c3128ae8ec5356f37b3cee7
   const email = emailInfo?.email;
   return (
     <header
