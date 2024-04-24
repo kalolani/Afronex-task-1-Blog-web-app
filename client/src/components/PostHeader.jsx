@@ -17,19 +17,6 @@ function PostHeader() {
     });
   }, []);
 
-<<<<<<< HEAD
-=======
-  function logout(e) {
-    fetch("https://blog-website-api-murex.vercel.app/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    setEmailInfo(null);
-
-    navigate(`/`);
-  }
-
->>>>>>> c864a140587a00407c3128ae8ec5356f37b3cee7
   const email = emailInfo?.email;
   return (
     <header
