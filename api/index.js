@@ -31,7 +31,7 @@ const salt = bcrypt.genSaltSync(10);
 const secret = "dkjfbvdkfjbvdkfjbvkdfvbdkfvb";
 
 await mongoose.connect(
-  "mongodb+srv://kaleab:kalolani7@cluster0.bi7hd3m.mongodb.net/?retryWrites=true&w=majority"
+  `mongodb+srv:// ${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.bi7hd3m.mongodb.net/?retryWrites=true&w=majority`
 );
 
 
