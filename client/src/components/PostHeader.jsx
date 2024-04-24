@@ -1,17 +1,11 @@
-/* eslint-disable no-unused-vars */
-//import { usePosts } from "../contexts/postContext";
-import Results from "./Results";
-import SearchPosts from "./SearchPosts";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePosts } from "../contexts/postContext";
 import CreatePost from "./CreatePost";
-import { useNavigate } from "react-router-dom";
 
 function PostHeader() {
   const { emailInfo, setEmailInfo, isOpen, setIsOpen } = usePosts();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
@@ -22,16 +16,6 @@ function PostHeader() {
       });
     });
   }, []);
-
-  function logout(e) {
-    fetch("http://localhost:4000/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    setEmailInfo(null);
-
-    navigate(`/`);
-  }
 
   const email = emailInfo?.email;
   return (
@@ -107,7 +91,7 @@ function PostHeader() {
       <div>
         {email && (
           <>
-            <Link to="/form" className="bigdesktop:mr-20">
+            <Link to="/form" className=" bigdesktop:mr-20">
               <CreatePost />
             </Link>
           </>

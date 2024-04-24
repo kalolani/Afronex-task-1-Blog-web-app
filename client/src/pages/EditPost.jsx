@@ -41,7 +41,7 @@ function EditPost() {
   const { onUpdate } = usePosts();
 
   useEffect(() => {
-    fetch(`https://blog-website-api-murex.vercel.app/post/${id}`).then((response) => {
+    fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
