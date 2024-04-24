@@ -14,7 +14,7 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-<<<<<<< HEAD
+
 const allowedOrigin = " http://localhost:5173";
 app.use(
   cors({
@@ -23,15 +23,7 @@ app.use(
     credentials: true,
   })
 );
-=======
-const allowedOrigin = 'https://blog-website-frontend-opal.vercel.app';
-app.use(cors({
-  origin: allowedOrigin,
- 
-  credentials:true
-  
-}));
->>>>>>> c864a140587a00407c3128ae8ec5356f37b3cee7
+
 app.use(express.json());
 app.use(cookieParser());
 
