@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import PostHeader from "../components/PostHeader";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const modules = {
@@ -49,7 +49,7 @@ function FormAddPost() {
 
   return (
     <div className="h-full">
-      <PostHeader />
+      <Header />
 
       <form
         onSubmit={handleSubmit}
