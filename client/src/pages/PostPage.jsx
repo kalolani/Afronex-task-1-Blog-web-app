@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import MyComponent from "../components/content";
 import { format } from "date-fns";
 import { useEffect } from "react";
-import PostHeader from "../components/PostHeader";
+import Header from "../components/Header";
 
 import moment from "moment";
 
@@ -95,7 +95,7 @@ function PostPage() {
 
   return (
     <>
-      <PostHeader />
+      <Header />
       <div className="px-40 mb-16 text-left phone:px-4 p-tab:px-10 tablet:px-20 laptop:px-40">
         <h3 className="text-center text-xl font-bold text-inherit phone:text-sm p-tab:text-md tablet:text-lg laptop:text-xlg bigdesktop:text-4xl bigdesktop:mb-10">
           {postInfo.title}
