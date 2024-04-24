@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import Header from "../components/Header";
+import PostHeader from "../components/Header";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { usePosts } from "../contexts/postContext";
@@ -59,7 +59,7 @@ function EditPost() {
 
   return (
     <div className="h-full">
-      <Header />
+      <PostHeader />
 
       <form
         onSubmit={handleUpdate}
