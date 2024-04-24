@@ -26,7 +26,7 @@ function PostProvider({ children }) {
 
   // console.log(posts);
   useEffect(() => {
-    fetch(`https://blog-website-api-murex.vercel.app/post`).then((response) => {
+    fetch(`http://localhost:4000/post`).then((response) => {
       response.json().then((posts) => {
         setPosts(posts);
       });
@@ -48,7 +48,7 @@ function PostProvider({ children }) {
     try {
       setIsLoading(true);
       // Add the new object to the beginning of the array
-      const res = await fetch(`https://blog-website-api-murex.vercel.app/post`, {
+      const res = await fetch(`http://localhost:4000/post`, {
         method: "POST",
         body: JSON.stringify(post),
 
@@ -71,7 +71,7 @@ function PostProvider({ children }) {
     try {
       setIsLoading(true);
       // Add the new object to the beginning of the array
-      const res = await fetch(`https://blog-website-api-murex.vercel.app/post`, {
+      const res = await fetch(`http://localhost:4000/post`, {
         method: "PUT",
         body: JSON.stringify(post),
 
@@ -92,7 +92,7 @@ function PostProvider({ children }) {
     try {
       setIsLoading(true);
 
-      const res = await fetch(`https://blog-website-api-murex.vercel.app/post/${postId}`, {
+      const res = await fetch(`http://localhost:4000/post/${postId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

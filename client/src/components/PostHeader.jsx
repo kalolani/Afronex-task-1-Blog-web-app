@@ -14,7 +14,7 @@ function PostHeader() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://blog-website-api-murex.vercel.app/profile", {
+    fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -24,7 +24,7 @@ function PostHeader() {
   }, []);
 
   function logout(e) {
-    fetch("https://blog-website-api-murex.vercel.app/logout", {
+    fetch("http://localhost:4000/logout", {
       method: "POST",
       credentials: "include",
     });
