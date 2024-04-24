@@ -37,7 +37,7 @@ await mongoose.connect(
 );
 
 app.get("/", (req, res) => {
-  res.json("hello");
+  res.json("kaleab");
 });
 
 app.post("/register", async (req, res) => {
