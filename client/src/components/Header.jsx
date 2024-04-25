@@ -35,9 +35,9 @@ useEffect(() => {
       console.error("Error fetching profile:", error);
       // Handle error, e.g., set default values or show error message
     });
+}, []); // Remove 'emailInfo' from the dependency array
 
- 
-
+  
   function logout() {
     fetch("https://blog-website-api-murex.vercel.app/logout", {
       method: "POST",
