@@ -18,24 +18,16 @@ function Header() {
   const { emailInfo, setEmailInfo, isOpen, setIsOpen } = usePosts();
   const navigate = useNavigate();
 
-useEffect(() => {
-  fetch("https://blog-website-api-murex.vercel.app/profile", {
-    credentials: "include",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch profile");
-      }
-      return response.json();
-    })
-    .then((userInfo) => {
-      setEmailInfo(userInfo);
-    })
-    .catch((error) => {
-      console.error("Error fetching profile:", error);
-      // Handle error, e.g., set default values or show error message
+ useEffect(() => {
+    fetch("https://blog-website-api-murex.vercel.app/profile", {
+     
+      credentials: "include",
+    }).then((response) => {
+      response.json().then((userInfo) => {
+        setEmailInfo(userInfo);
+      });
     });
-}, []); // Remove 'emailInfo' from the dependency array
+  }, []);
 
   
   function logout() {
