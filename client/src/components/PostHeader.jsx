@@ -15,7 +15,7 @@ function PostHeader() {
         setEmailInfo(userInfo);
       });
     });
-  }, []);
+  }, [emailInfo]);
 
   const email = emailInfo?.email;
   return (
