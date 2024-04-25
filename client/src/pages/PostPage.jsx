@@ -27,7 +27,7 @@ function PostPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/` + id).then((response) => {
+    fetch(`https://blog-website-api-murex.vercel.app/post/` + id).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
@@ -38,7 +38,7 @@ function PostPage() {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/comment/${postInfo._id}`
+          `https://blog-website-api-murex.vercel.app/comment/${postInfo._id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch comments");
@@ -79,7 +79,7 @@ function PostPage() {
     e.preventDefault();
 
     // Add the new object to the beginning of the array
-    const res = await fetch(`http://localhost:4000/comment`, {
+    const res = await fetch(`https://blog-website-api-murex.vercel.app/comment`, {
       method: "POST",
       body: JSON.stringify({ postId: id, comment, email }),
 
