@@ -15,10 +15,11 @@ import Comment from "./models/comment.js";
 const app = express();
 
 
+const allowedOrigin = " https://blog-website-frontend-opal.vercel.app";
 app.use(
   cors({
-    origin: " https://blog-website-frontend-opal.vercel.app",
-    methods: "POST", "GET", "PUT","DELETE",
+    origin: allowedOrigin,
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
