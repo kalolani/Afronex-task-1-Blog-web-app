@@ -28,7 +28,7 @@ function Header() {
     });
   }, [emailInfo]);
 
-  console.log(emailInfo);
+ 
 
   function logout() {
     fetch("https://blog-website-api-murex.vercel.app/logout", {
@@ -40,7 +40,7 @@ function Header() {
     navigate(`/`);
   }
 
-  console.log(isOpen);
+ 
 
   const email = emailInfo?.email;
   return (
