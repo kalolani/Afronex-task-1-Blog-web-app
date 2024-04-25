@@ -93,12 +93,7 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
-    if (err) {
-      if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ error: "Token expired" });
-      }
-      return res.status(401).json({ error: "Unauthorized" });
-    }
+    if (err) throw err;
     res.json(info);
   });
 });
