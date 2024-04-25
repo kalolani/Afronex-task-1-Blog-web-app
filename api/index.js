@@ -18,7 +18,7 @@ const allowedOrigin = " http://localhost:5173";
 app.use(
   cors({
     origin: allowedOrigin,
-    methods: ["POST", "GET", "PUT"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -37,7 +37,7 @@ await mongoose.connect(
 );
 
 app.get("/", (req, res) => {
-  res.json("hello");
+  res.json("kaleab");
 });
 
 app.post("/register", async (req, res) => {
@@ -93,12 +93,7 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
-    if (err) {
-      if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ error: "Token expired" });
-      }
-      return res.status(401).json({ error: "Unauthorized" });
-    }
+    if (err) throw err;
     res.json(info);
   });
 });
