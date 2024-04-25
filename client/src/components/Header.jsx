@@ -20,7 +20,7 @@ function Header() {
 
  useEffect(() => {
     fetch("https://blog-website-api-murex.vercel.app/profile", {
-      method:"GET",
+     
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
