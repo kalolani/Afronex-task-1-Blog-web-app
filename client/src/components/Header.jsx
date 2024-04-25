@@ -27,7 +27,7 @@ function Header() {
         setEmailInfo(userInfo);
       });
     });
-  }, [emailInfo]);
+  }, []);
 
   
   function logout() {
