@@ -14,16 +14,11 @@ import Comment from "./models/comment.js";
 
 const app = express();
 
-
-const allowedOrigin = " https://blog-website-frontend-opal.vercel.app";
+const allowedOrigin = " http://localhost:5173";
 app.use(
   cors({
     origin: allowedOrigin,
-<<<<<<< HEAD
     methods: ["POST", "GET", "PUT", "DELETE"],
-=======
-   methods: ["POST", "GET", "PUT", "DELETE"],
->>>>>>> 20c8cecac07586fb0eb60f7163bf83b3b0192062
     credentials: true,
   })
 );
@@ -98,14 +93,7 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
-<<<<<<< HEAD
     if (err) throw err;
-=======
-    if (err) {
-      console.error("Error verifying token:", err);
-      return res.status(401).json({ error: "Unauthorized" });
-    }
->>>>>>> 20c8cecac07586fb0eb60f7163bf83b3b0192062
     res.json(info);
   });
 });
