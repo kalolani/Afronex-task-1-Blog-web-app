@@ -3,7 +3,7 @@
 
 <h3>Tech stack I used to build this project</h3>
 <ul>
-  <li>MongoDb <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
+  <li display="flex" align-items="center" justify-content="center">MongoDb <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
   <li>Express Js</li>
   <li>React Js</li>
   <li>Node Js</li>
