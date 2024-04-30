@@ -3,11 +3,11 @@
 
 <h3>Tech stack I used to build this project</h3>
 <ul>
-  <li >MongoDb <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/mongodb-original-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
-  <li>Express Js <a href="https://https://expressjs.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/express-original-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
-  <li>React Js <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
-  <li>Node Js <a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/nodejs-line-wordmark.svg" alt="react" width="40" height="40"/> </a></li>
-  <li>Tailwind CSS <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a></li>
+  <li >MongoDb</li>
+  <li>Express Js</li>
+  <li>React Js </li>
+  <li>Node Js</li>
+  <li>Tailwind CSS </li>
 </ul>
 
 <h3>Installation</h3>
