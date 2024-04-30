@@ -1,4 +1,4 @@
-<h1 align="center">welcome to the dynamic blog web app</h1>
+<h1>welcome to the dynamic blog web app</h1>
 <p>this is a simple single page fully responsive and dynamic blog web application. By using this platform  users can just go and read diiferent blogs without them expected to have registered or loged in.But if any user wants to create a blog or comment on a blog they have expected to be registered and logged in.the blog also offers the functionality of editing and deleting blogs that one has created</p>
 
 <h3>Tech stack I used to build this project</h3>
